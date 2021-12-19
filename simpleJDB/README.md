@@ -6,9 +6,9 @@ simpleJDB is a simple python databse.
 
 initialize the database:
 
-    from simpleJDB.functions import database
+    import simpleJDB
 
-    db = database("databsename")
+    db = simpleJB.database("databsename")
 
 to add a key
 
