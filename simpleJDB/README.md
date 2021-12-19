@@ -24,6 +24,10 @@ to delete a key
 
     db.delkey("key to delete")
 
+to get a keys value
+
+    db.getkey("key")
+
 to get the type of a key
 
     db.gettype("key")

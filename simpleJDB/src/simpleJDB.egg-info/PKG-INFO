@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: simpleJDB
-Version: 0.0.2
+Version: 0.0.4
 Summary: a simple key based json databse
 Home-page: https://github.com/Milkman337/simpleJDB/tree/master/simpleJDB
 Author: Jan
@@ -40,6 +40,10 @@ to change the value of a key
 to delete a key
 
     db.delkey("key to delete")
+
+to get a keys value
+
+    db.getkey("key")
 
 to get the type of a key
 
