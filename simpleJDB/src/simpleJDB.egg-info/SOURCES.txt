@@ -1,0 +1,10 @@
+LICENSE
+README.md
+pyproject.toml
+setup.cfg
+src/simpleJDB/__init__.py
+src/simpleJDB/functions.py
+src/simpleJDB.egg-info/PKG-INFO
+src/simpleJDB.egg-info/SOURCES.txt
+src/simpleJDB.egg-info/dependency_links.txt
+src/simpleJDB.egg-info/top_level.txt
