@@ -1,1 +1,1 @@
-from functions import database
+from simpleJDB.functions import database
