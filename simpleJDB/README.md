@@ -5,13 +5,13 @@ simpleJDB is a simple python databse.
 ## Example Code
 
 initialize the database:
--- code-block:: python
+.. code-block:: python
     from simpleJDB.functions import database
 
     db = database("databsename")
 
 to add a key
--- code-block:: python
+.. code-block:: python
     value_to_add = 22
 
     db.setkey("keyname", 1)
