@@ -1,33 +1,45 @@
-# simpleJDB
+simpleJDB
+=========
 
-simpleJDB is a simple python databse.
+simpleJDB is a lightweight and easy-to-use python database that allows you to store, retrieve, and manipulate data with minimal code.
 
-## Example Code
+Getting Started
+---------------
 
-initialize the database:
+To initialize the database, simply import the `simpleJDB` module and create a new `database` object, passing in a name for the database as an argument:
 
-    import simpleJDB
+`import simpleJDB  db = simpleJDB.database("my_database")`
 
-    db = simpleJB.database("databsename")
+Adding and Updating Keys
+------------------------
 
-to add a key
+To add a new key-value pair to the database, use the `setkey()` method and pass in the key name and the value to be stored:
 
-    value_to_add = 22
+`db.setkey("age", 22)`
 
-    db.setkey("keyname", 1)
+You can also update the value of an existing key by calling `setkey()` with the same key name and a new value:
 
-to change the value of a key
+`db.setkey("age", 23)`
 
-    db.setkey("name of key you want to change", 2)
+Retrieving and Deleting Keys
+----------------------------
 
-to delete a key
+To retrieve the value of a key, use the `getkey()` method and pass in the key name:
 
-    db.delkey("key to delete")
+`age = db.getkey("age")`
 
-to get a keys value
+To delete a key, use the `delkey()` method and pass in the key name:
 
-    db.getkey("key")
+`db.delkey("age")`
 
-to get the type of a key
+Key Type
+--------
 
-    db.gettype("key")
+To check the data type of a key, use the `gettype()` method and pass in the key name:
+
+`data_type = db.gettype("age")`
+
+Conclusion
+----------
+
+With simpleJDB, you can easily store and manipulate data in a pythonic way. So, give it a try and see how it can simplify your project.
