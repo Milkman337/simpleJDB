@@ -8,6 +8,7 @@ Features
 
 *   Support for multiple data types: simpleJDB supports storing integers, strings, floats, and lists as values.
 *   Concurrency Support: simpleJDB is thread-safe and can handle simultaneous access and modification of data by multiple users.
+*   Staging/Commit: simpleJDB has a staging/commit feature that allows you to make changes to the data before committing them to the json file.
 *   Documentation: simpleJDB is well-documented and easy to understand, making it easier to get started with the library.
 *   Unit testing: simpleJDB has a comprehensive test suite to ensure that the library is working as expected and to catch any bugs before they are released to the public.
 
@@ -16,7 +17,7 @@ Getting Started
 
 To initialize the database, simply import the simpleJDB module and create a new database object, passing in a name for the database as an argument:
 
-`import simpleJDB  db = simpleJDB.database("my_database")`
+`import simpleJDB db = simpleJDB.database("my_database")`
 
 Adding and Updating Keys
 ------------------------
@@ -28,6 +29,10 @@ To add a new key-value pair to the database, use the setkey() method and pass in
 You can also update the value of an existing key by calling setkey() with the same key name and a new value:
 
 `db.setkey("age", 23)`
+
+When you are ready to commit the changes to the json file, use the commit() method:
+
+`db.commit()`
 
 Retrieving and Deleting Keys
 ----------------------------
