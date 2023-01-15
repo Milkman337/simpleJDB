@@ -39,15 +39,17 @@ class database:
         Returns:
             None
         """
+        data_type = type(value).__name__
         gk = 0
         for thing in self.data["main"]:
             if thing["keyname"] == keyname:
                 thing["value"] = value
+                thing["datatype"] = data_type
                 gk = 1
                 with open(f"{self.name}.json", "w") as f:
                     json.dump(self.data, f)
         if gk == 0:
-            self.data["main"].append({"keyname": keyname, "value": value})
+            self.data["main"].append({"keyname": keyname, "value": value, "datatype": data_type})
             with open(f"{self.name}.json", "w") as f:
                 json.dump(self.data, f)
 
@@ -87,8 +89,9 @@ class database:
         """
         for thing in self.data["main"]:
             if thing["keyname"] == keyname:
-                return type(thing["value"])
+                return thing["datatype"]
         raise TypeError("Key has not been found.")
+
 
     def getkey(self, keyname:str):
         """
