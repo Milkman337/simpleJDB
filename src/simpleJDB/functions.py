@@ -110,3 +110,6 @@ class database:
             if thing["keyname"] == keyname:
                 return thing["value"]
         raise TypeError("Key has not been found.")
+
+
+    
