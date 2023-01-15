@@ -1,4 +1,5 @@
 import json
+import threading
 
 class database:
     """
@@ -27,6 +28,7 @@ class database:
                 f.write("{\"main\": []}")
             with open(f"{self.name}.json", "r") as f:
                 self.data = json.load(f)
+        self.lock = threading.Lock()
 
     def setkey(self, keyname: str, value):
         """
@@ -39,19 +41,20 @@ class database:
         Returns:
             None
         """
-        data_type = type(value).__name__
-        gk = 0
-        for thing in self.data["main"]:
-            if thing["keyname"] == keyname:
-                thing["value"] = value
-                thing["datatype"] = data_type
-                gk = 1
+        with self.lock:
+            data_type = type(value).__name__
+            gk = 0
+            for thing in self.data["main"]:
+                if thing["keyname"] == keyname:
+                    thing["value"] = value
+                    thing["datatype"] = data_type
+                    gk = 1
+                    with open(f"{self.name}.json", "w") as f:
+                        json.dump(self.data, f)
+            if gk == 0:
+                self.data["main"].append({"keyname": keyname, "value": value, "datatype": data_type})
                 with open(f"{self.name}.json", "w") as f:
                     json.dump(self.data, f)
-        if gk == 0:
-            self.data["main"].append({"keyname": keyname, "value": value, "datatype": data_type})
-            with open(f"{self.name}.json", "w") as f:
-                json.dump(self.data, f)
 
     def delkey(self, keyname:str):
         """
@@ -66,13 +69,14 @@ class database:
         Raises:
             TypeError: If the keyname is not found in the json file.
         """
-        for thing in self.data["main"]:
-            if thing["keyname"] == keyname:
-                self.data["main"].remove(thing)
-                with open(f"{self.name}.json", "w") as f:
-                    json.dump(self.data, f)
-                return
-        raise TypeError("Key has not been found.")
+        with self.lock:
+            for thing in self.data["main"]:
+                if thing["keyname"] == keyname:
+                    self.data["main"].remove(thing)
+                    with open(f"{self.name}.json", "w") as f:
+                        json.dump(self.data, f)
+                    return
+            raise TypeError("Key has not been found.")
 
     def gettype(self, keyname:str):
         """
@@ -87,10 +91,11 @@ class database:
         Raises:
             TypeError: If the keyname is not found in the json file.
         """
-        for thing in self.data["main"]:
-            if thing["keyname"] == keyname:
-                return thing["datatype"]
-        raise TypeError("Key has not been found.")
+        with self.lock:
+            for thing in self.data["main"]:
+                if thing["keyname"] == keyname:
+                    return thing["datatype"]
+            raise TypeError("Key has not been found.")
 
 
     def getkey(self, keyname:str):
@@ -106,10 +111,11 @@ class database:
         Raises:
             TypeError: If the keyname is not found in the json file.
         """
-        for thing in self.data["main"]:
-            if thing["keyname"] == keyname:
-                return thing["value"]
-        raise TypeError("Key has not been found.")
+        with self.lock:
+            for thing in self.data["main"]:
+                if thing["keyname"] == keyname:
+                    return thing["value"]
+            raise TypeError("Key has not been found.")
 
 
     
